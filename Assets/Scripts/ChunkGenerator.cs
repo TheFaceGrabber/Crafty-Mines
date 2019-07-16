@@ -38,8 +38,7 @@ public struct Space
 
 public class ChunkGenerator : MonoBehaviour 
 {
-    public float NoiseScale = 10;
-    public float HeightScale = 2;
+    public Generator Generator;
 
     public Chunk Reference;
 
@@ -51,19 +50,12 @@ public class ChunkGenerator : MonoBehaviour
         Run();
     }
 
-    private void Update()
-    {
-        if (ForceGenerate)
-        {
-            ForceGenerate = false;
-            Generate();
-            UpdateMesh();
-        }
-    }
-
     public void Run()
     {
-        Generate();
+        Reference = new Chunk(transform.position);
+        Generator.OnPreGenerate(Reference);
+        Generator.OnGenerate(Reference);
+        Generator.OnPostGenerate(Reference);
         UpdateMesh();
     }
 
@@ -73,52 +65,5 @@ public class ChunkGenerator : MonoBehaviour
         GetComponent<MeshFilter>().mesh = m;
         var col = gameObject.AddComponent<MeshCollider>();
         col.sharedMesh = m;
-    }
-
-    void Generate()
-    {
-        Reference = new Chunk(transform.position);
-        for (int x = 0; x < Chunk.ChunkSize; x++)
-        {
-            for (int z = 0; z < Chunk.ChunkSize; z++)
-            {
-                var pos = Reference.NoisePos;
-                pos += new Vector2(x, z);
-                int height = Mathf.RoundToInt(GeneratorNoise(pos) * HeightScale) + 25;
-                for(int y = 0; y < height; y++)
-                {
-                    if(y > height)
-                    {
-                        Reference.Blocks[x, y, z].Block = Blocks.Air;
-                    }
-                    else if(y == height - 1)
-                    {
-                        if(height -1 > Chunk.SeaLevel)
-                            Reference.Blocks[x, y, z].Block = Blocks.Grass;
-                        else
-                            Reference.Blocks[x, y, z].Block = Blocks.Sand;
-                    }
-                    else if(y <= height - 5)
-                    {
-                        Reference.Blocks[x, y, z].Block = Blocks.Stone;
-                    }
-                    else
-                    {
-                        if(y > Chunk.SeaLevel)
-                            Reference.Blocks[x, y, z].Block = Blocks.Dirt;
-                        else
-                            Reference.Blocks[x, y, z].Block = Blocks.Sand;
-                    }
-                    Reference.Blocks[x, y,z ].Height = y;
-                }
-            }
-        }
-    }
-
-    float GeneratorNoise(Vector2 pos)
-    {
-        float x = pos.x / Chunk.ChunkSize * NoiseScale;
-        float y = pos.y / Chunk.ChunkSize * NoiseScale;
-        return Mathf.PerlinNoise(x, y) * 2 - 1;
     }
 }
