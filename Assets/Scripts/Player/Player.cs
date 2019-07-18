@@ -14,12 +14,25 @@ public class Player : MonoBehaviour {
 
     public Transform Camera;
 
+    public LayerMask GroundMask;
+
+    public bool isGrounded
+    {
+        get
+        {
+            return Physics.Raycast(transform.position, Vector3.down, 1f, GroundMask);
+        }
+    }
+
     Rigidbody rigidbody;
     float angle = 0;
 
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -54,10 +67,7 @@ public class Player : MonoBehaviour {
 
         rigidbody.velocity = new Vector3(dir.x, rigidbody.velocity.y, dir.z);
 
-        //transform.position += transform.right * h * Time.deltaTime;
-        //transform.position += transform.forward * v * Time.deltaTime;
-
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && isGrounded)
         {
             rigidbody.AddForce(Vector3.up * JumpSpeed, ForceMode.Impulse);
         }

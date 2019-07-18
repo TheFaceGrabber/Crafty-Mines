@@ -20,7 +20,7 @@ public static class MeshGenerator
                 for (int z = 0; z < Chunk.ChunkSize; z++)
                 {
                     Space space = chunk.Blocks[x, y, z];
-                    if (space.Block == Blocks.Air) continue;
+                    if (space.Block == (int)Blocks.Air) continue;
                     Block b = BlockRegistrar.GetBlock((int)space.Block);
                     if (b == null) continue;
                     //Draw top

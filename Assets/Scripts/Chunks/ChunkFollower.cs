@@ -36,7 +36,7 @@ public class ChunkFollower : MonoBehaviour {
     void UpdateChunks()
     {
         int xPos = (int)(Mathf.Round(transform.position.x / (float)Chunk.ChunkSize) * Chunk.ChunkSize) + Chunk.ChunkSize /2;
-        int zPos = (int)(Mathf.Round(transform.position.z / (float)Chunk.ChunkSize) * Chunk.ChunkSize) +Chunk.ChunkSize / 2;
+        int zPos = (int)(Mathf.Round(transform.position.z / (float)Chunk.ChunkSize) * Chunk.ChunkSize) + Chunk.ChunkSize / 2;
 
         lastActive.ForEach(x => x.gameObject.SetActive(false));
         lastActive.Clear();
@@ -61,7 +61,6 @@ public class ChunkFollower : MonoBehaviour {
                         ChunkObject = obj,
                         Position = new Vector2((int)pos.x, (int)pos.y)
                     });
-                    //obj.Run();
                     lastActive.Add(obj);
                 }
             }
@@ -75,7 +74,7 @@ public class ChunkFollower : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position, Vector3.one * ActualViewSize);
+        Gizmos.DrawWireCube(transform.position, Vector3.one * ActualViewSize * 2);
         int xPos = (int)(Mathf.Round(transform.position.x / (float)Chunk.ChunkSize) * Chunk.ChunkSize);
         int zPos = (int)(Mathf.Round(transform.position.z / (float)Chunk.ChunkSize) * Chunk.ChunkSize);
         Gizmos.DrawWireCube(new Vector3(xPos, transform.position.y, zPos), Vector3.one * Chunk.ChunkSize);

@@ -11,5 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb5076d085a84012a1fbcc556d640af, type: 3}
   m_Name: Basic Generator
   m_EditorClassIdentifier: 
-  NoiseScale: 0.5
+  NoiseScale: 0.25
   HeightScale: 8
+  ChanceOfTree: 25
+  TreeCount: 20
+  Seed: 12323
+  Tree: {fileID: 11400000, guid: 58a18cfae07a1459cab6640240487677, type: 2}

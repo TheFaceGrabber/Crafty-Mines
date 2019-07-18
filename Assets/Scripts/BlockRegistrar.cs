@@ -5,18 +5,20 @@ using System.Reflection;
 using System;
 using System.Linq;
 
-public enum Blocks
+public static class Blocks
 {
-    Air = 0,
+    public const int Air = 0,
     Dirt = 1,
     Grass = 2,
     Stone = 3,
-    Sand = 4
+    Sand = 4,
+    Log = 5,
+    Leaves = 6;
 }
 
 public static class BlockRegistrar
 {
-    static Dictionary<int, Block> Blocks = new Dictionary<int, Block>();
+    public static Dictionary<int, Block> Blocks = new Dictionary<int, Block>();
 
     static bool isInited;
 
@@ -29,6 +31,8 @@ public static class BlockRegistrar
             var block = (Block)Activator.CreateInstance(t);
             Blocks.Add(block.BlockID, block);
         }
+
+        Blocks = Blocks.OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
 
         isInited = true;
     }
