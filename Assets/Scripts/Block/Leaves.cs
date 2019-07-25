@@ -32,7 +32,7 @@ public class Leaves : Block
     {
         get
         {
-            return Face.GetFromIndex(4, 3);
+            return Face.GetFromIndex(4, 3, new Color(102f / 255f, 168f / 255f, 88f / 255f));
         }
     }
 
@@ -40,7 +40,7 @@ public class Leaves : Block
     {
         get
         {
-            return Face.GetFromIndex(4, 3);
+            return Face.GetFromIndex(4, 3, new Color(102f / 255f, 168f / 255f, 88f / 255f));
         }
     }
 
@@ -48,7 +48,7 @@ public class Leaves : Block
     {
         get
         {
-            return Face.GetFromIndex(4, 3);
+            return Face.GetFromIndex(4, 3, new Color(102f / 255f, 168f / 255f, 88f / 255f));
         }
     }
 
@@ -56,7 +56,7 @@ public class Leaves : Block
     {
         get
         {
-            return Face.GetFromIndex(4, 3);
+            return Face.GetFromIndex(4, 3, new Color(102f / 255f, 168f / 255f, 88f / 255f));
         }
     }
 
@@ -64,7 +64,7 @@ public class Leaves : Block
     {
         get
         {
-            return Face.GetFromIndex(4, 3);
+            return Face.GetFromIndex(4, 3, new Color(102f / 255f, 168f / 255f, 88f / 255f));
         }
     }
 
@@ -72,7 +72,7 @@ public class Leaves : Block
     {
         get
         {
-            return Face.GetFromIndex(4, 3);
+            return Face.GetFromIndex(4, 3, new Color(102f / 255f, 168f / 255f, 88f / 255f));
         }
     }
 }

@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1472158356463992}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -58,6 +58,8 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 0577c5f067c7d4a62812292661af7de3, type: 2}
+  - {fileID: 2100000, guid: 3805e257377a04a76ba03c1169755e6c, type: 2}
+  - {fileID: 2100000, guid: f5d55f4dd5a41435facc6ce807535ff6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,5 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9254660e6cb94fca8496fada0ce5232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Generator: {fileID: 11400000, guid: f1edbc8dc0de645c2b48806c6a181ad9, type: 2}
+  Manager: {fileID: 0}
+  Generator: {fileID: 11400000, guid: 77668521268004bd7911d6acd733f9bf, type: 2}
   ForceGenerate: 0
+  MeshCollider: {fileID: 0}

@@ -20,6 +20,14 @@ public class Grass : Block
         }
     }
 
+    public override int Submesh
+    {
+        get
+        {
+            return 1;
+        }
+    }
+
     public override bool IsStackable
     {
         get
@@ -32,7 +40,8 @@ public class Grass : Block
     {
         get
         {
-            return Face.GetFromIndex(3, 0);
+            return Face.GetFromIndex(3, 0, overlayX: 6, overlayY: 3, 
+                color: new Color(102f / 255f, 168f / 255f, 88f / 255f));
         }
     }
 
@@ -40,7 +49,8 @@ public class Grass : Block
     {
         get
         {
-            return Face.GetFromIndex(3, 0);
+            return Face.GetFromIndex(3, 0, overlayX: 6, overlayY: 3, 
+                color: new Color(102f / 255f, 168f / 255f, 88f / 255f));
         }
     }
 
@@ -48,7 +58,7 @@ public class Grass : Block
     {
         get
         {
-            return Face.GetFromIndex(0, 0);
+            return Face.GetFromIndex(0, 0, new Color(102f/ 255f, 168f/ 255f, 88f/ 255f));
         }
     }
 
@@ -64,7 +74,8 @@ public class Grass : Block
     {
         get
         {
-            return Face.GetFromIndex(3, 0);
+            return Face.GetFromIndex(3, 0, overlayX: 6, overlayY: 3, 
+                color: new Color(102f / 255f, 168f / 255f, 88f / 255f));
         }
     }
 
@@ -72,7 +83,8 @@ public class Grass : Block
     {
         get
         {
-            return Face.GetFromIndex(3, 0);
+            return Face.GetFromIndex(3, 0, overlayX: 6, overlayY: 3, 
+                color: new Color(102f / 255f, 168f / 255f, 88f / 255f));
         }
     }
 }

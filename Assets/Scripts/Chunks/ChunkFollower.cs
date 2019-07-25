@@ -18,13 +18,13 @@ public class ChunkFollower : MonoBehaviour {
 
     public int ActualViewSize { get { return ViewSize * Chunk.ChunkSize; } }
 
-    List<ChunkHolder> chunks = new List<ChunkHolder>();
+    public List<ChunkHolder> Chunks = new List<ChunkHolder>();
 
     List<ChunkGenerator> lastActive = new List<ChunkGenerator>();
 
 	// Use this for initialization
 	void Start () {
-		
+        Chunks = new List<ChunkHolder>();
 	}
 	
 	// Update is called once per frame
@@ -41,9 +41,9 @@ public class ChunkFollower : MonoBehaviour {
         lastActive.ForEach(x => x.gameObject.SetActive(false));
         lastActive.Clear();
 
-        for (int x = -ActualViewSize; x < ActualViewSize; x += Chunk.ChunkSize)
+        for (int x = -ActualViewSize - Chunk.ChunkSize; x < ActualViewSize; x += Chunk.ChunkSize)
         {
-            for (int y = -ActualViewSize; y < ActualViewSize; y += Chunk.ChunkSize)
+            for (int y = -ActualViewSize - Chunk.ChunkSize; y < ActualViewSize; y += Chunk.ChunkSize)
             {
                 var pos = new Vector2(x + xPos, y + zPos);
                 var holder = GetHolder((int)pos.x, (int)pos.y);
@@ -56,7 +56,8 @@ public class ChunkFollower : MonoBehaviour {
                 {
                     //Create...
                     var obj = Instantiate(Prefab, new Vector3((int)pos.x, 0, (int)pos.y), Quaternion.identity);
-                    chunks.Add(new ChunkHolder()
+                    obj.Manager = this;
+                    Chunks.Add(new ChunkHolder()
                     {
                         ChunkObject = obj,
                         Position = new Vector2((int)pos.x, (int)pos.y)
@@ -65,11 +66,13 @@ public class ChunkFollower : MonoBehaviour {
                 }
             }
         }
+
+        //Chunks.ForEach(x => x.ChunkObject.UpdateNeighbours());
     }
 
     ChunkHolder GetHolder(int x, int y)
     {
-        return chunks.SingleOrDefault(v => (int)v.Position.x == x && (int)v.Position.y == y);
+        return Chunks.SingleOrDefault(v => (int)v.Position.x == x && (int)v.Position.y == y);
     }
 
     private void OnDrawGizmos()

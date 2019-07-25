@@ -27,6 +27,14 @@ public class PlayerInteractor : MonoBehaviour
                     chunk.Reference.ApplyBlock((int)local.x, (int)local.y, (int)local.z, Blocks.Air);
                     chunk.UpdateMesh();
                 }
+
+                if(Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    var placedPos = chunk.Reference.WorldToLocal(hit.point + (hit.normal / 2));
+                    chunk.Reference.ApplyBlock((int)placedPos.x, (int)placedPos.y, (int)placedPos.z, 
+                        Blocks.Stone);
+                    chunk.UpdateMesh();
+                }
             }
         }
         else
